@@ -8,7 +8,7 @@ const CollectionItem = ({id, name, price, imageUrlWeb}) => {
             style={{ backgroundImage: `url(${imageUrlWeb})`}} />
             <div className="collection-footer">
                 <span className="namd">{name}</span>
-                <span className="price">{price}</span>
+                <span className="price">${price}</span>
             </div>
         </div>
     );
