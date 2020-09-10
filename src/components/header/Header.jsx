@@ -6,7 +6,7 @@ import { auth } from '../../firebase/firebase.utils';
 import { connect } from 'react-redux';
 
 const Header = ({ currentUser }) => {
-   console.log('nkz 005 currentUser: ', currentUser);
+
     return (
         <div className="header">
             <Link className="logo-container" to="/">

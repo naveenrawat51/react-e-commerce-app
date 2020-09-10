@@ -15,20 +15,17 @@ class App extends Component {
 
   componentDidMount() {
     const { setCurrentUser } = this.props;
-    console.log('nkz 001');
-    this.unsubscribeFromAuth = auth.onAuthStateChanged( async authUser =>  {
-      if(authUser) {
-        console.log('nkz 002');
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async authUser => {
+      if (authUser) {
         const userRef = await createUserProfileDocument(authUser);
 
-        userRef.onSnapshot( snapShot => {
+        userRef.onSnapshot(snapShot => {
           setCurrentUser({
             ...snapShot.data()
-           });
+          });
         })
       } else {
         setCurrentUser(authUser)
-        console.log('nkz 003');
       }
     })
   }
@@ -38,16 +35,16 @@ class App extends Component {
   }
 
   render() {
-  return (
-    <div>
-      <Header/>
-      <Switch>
-      <Route exact path='/' component={Homepage}/>
-      <Route exact path='/shop' component={ShopPage}/>
-      <Route exact path="/signin" component={SignInSignUp}/>
-      </Switch>
-    </div>
-  );
+    return (
+      <div>
+        <Header />
+        <Switch>
+          <Route exact path='/' component={Homepage} />
+          <Route exact path='/shop' component={ShopPage} />
+          <Route exact path="/signin" component={SignInSignUp} />
+        </Switch>
+      </div>
+    );
   }
 }
 
