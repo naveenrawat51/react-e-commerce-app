@@ -3,8 +3,10 @@ import { connect } from "react-redux";
 import "./cart.scss";
 import CustomButton from "../custom-button/Custom-button";
 import CartItem from "../cart-item/cart-item";
+import { selectCartItems } from '../../redux/cart/cart.selectors';
 
 const Cart = ({ cartItems }) => {
+  console.log('hello');
   let allItems = null;
   if (cartItems.length > 0) {
     allItems = cartItems.map(item => <CartItem key={item.id} item={item} />);
@@ -18,8 +20,8 @@ const Cart = ({ cartItems }) => {
   );
 };
 
-const mapStateToProps = ({ cart: { cartItems } }) => ({
-  cartItems
+const mapStateToProps = (state) => ({
+  cartItems: selectCartItems(state)
 });
 
 export default connect(
