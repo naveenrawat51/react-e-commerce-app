@@ -4,8 +4,9 @@ import { ReactComponent as Logo } from '../../assets/Logo.svg';
 import { Link } from 'react-router-dom';
 import { auth } from '../../firebase/firebase.utils';
 import { connect } from 'react-redux';
-
-const Header = ({ currentUser }) => {
+import CartItem from '../cart-icon/cart-icon';
+import Cart from '../cart/cart';
+const Header = ({ currentUser, cartHidden }) => {
 
     return (
         <div className="header">
@@ -27,13 +28,16 @@ const Header = ({ currentUser }) => {
                     <Link className="option" to="/signin">
                         SIGN IN
                         </Link>}
+                        <CartItem/>
             </div>
+            { !cartHidden ? <Cart/> : null }
         </div>
     );
 }
 
-const mapStateToProps = (state) => ({
-    currentUser: state.user.currentUser
+const mapStateToProps = ({user, cart}) => ({
+    currentUser: user.currentUser,
+    cartHidden: cart.hidden
 })
 
 
