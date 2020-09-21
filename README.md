@@ -2,6 +2,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
+Open [https://react-ecommerce-app-1dee3.web.app](https://react-ecommerce-app-1dee3.web.app) to view it in the browser.
+
+
 In the project directory, you can run:
 
 ### `npm start`
