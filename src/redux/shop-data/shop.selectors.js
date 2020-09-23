@@ -2,11 +2,11 @@ import { createSelector } from "reselect";
 import memoize from "lodash.memoize";
 
 const COLLECTION_ID_MAP = {
-  hats: 1,
-  sneakers: 2,
-  jackets: 3,
-  womens: 4,
-  mens: 5,
+  hats: "14MiMv4vcZO4wnUuGcEE",
+  sneakers: "XgTUg23ubdxsd9fg3IPk",
+  jackets: "S9dhvzHcqtgJicsip7qN",
+  womens: "veHFxngUjRelFbX2pOlG",
+  mens: "yE4toJmUtHZWZrs2DRlX",
 };
 
 const selectShopData = (state) => state.shop;

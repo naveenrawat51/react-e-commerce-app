@@ -4,7 +4,8 @@ import CollectionItem from "../../components/collection-item/Collection-item";
 import { connect } from "react-redux";
 import { selectCollection } from "../../redux/shop-data/shop.selectors";
 
-const ShopCategory = ({ collection }) => {
+const ShopCategory = (props) => {
+  const { collection } = props;
   const { title, items } = collection;
   const collectionPreviewData = items.map((item) => (
     <CollectionItem item={item} key={item.id} {...item} />
@@ -21,4 +22,5 @@ const ShopCategory = ({ collection }) => {
 const mapStateToProps = (state, ownProps) => ({
   collection: selectCollection(ownProps.match.params.category)(state),
 });
+
 export default connect(mapStateToProps)(ShopCategory);
