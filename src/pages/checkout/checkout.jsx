@@ -39,7 +39,7 @@ const CheckoutPage = ({ cartItems, cartTotal }) => {
       {allItems}
       {cartTotal ? <div className="total">TOTAL: ${cartTotal}</div> : null}
       <StripeCheckoutButton price={cartTotal} />
-      <div class="test-creds">
+      <div className="test-creds">
         <h2>*Please use the following credit card for payments*</h2>
         <h2>4242 4242 4242 4242 --- Exp: 01/2025 --- CVV: 123</h2>
       </div>
