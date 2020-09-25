@@ -5,18 +5,23 @@ import { connect } from "react-redux";
 import { selectCollection } from "../../redux/shop-data/shop.selectors";
 
 const ShopCategory = (props) => {
-  const { collection } = props;
-  const { title, items } = collection;
-  const collectionPreviewData = items.map((item) => (
-    <CollectionItem item={item} key={item.id} {...item} />
-  ));
+  let CategoryData = <h2>ABC</h2>;
+  if (props.collection) {
+    const { collection } = props;
+    const { title, items } = collection;
+    const collectionPreviewData = items.map((item) => (
+      <CollectionItem item={item} key={item.id} {...item} />
+    ));
 
-  return (
-    <div className="shop-category">
-      <h2 className="title">SHOP {title}</h2>
-      <div className="items">{collectionPreviewData}</div>
-    </div>
-  );
+    CategoryData = (
+      <div className="shop-category">
+        <h2 className="title">SHOP {title}</h2>
+        <div className="items">{collectionPreviewData}</div>
+      </div>
+    );
+  }
+
+  return CategoryData;
 };
 
 const mapStateToProps = (state, ownProps) => ({

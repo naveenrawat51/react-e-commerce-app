@@ -10,8 +10,16 @@ import {
   convertCollectionSnapshotToMap,
 } from "../../firebase/firebase.utils";
 import { updateCollections } from "../../redux/shop-data/shop.actions";
+import SpinnerHoc from "../../components/spinner-hoc/spinner";
+
+const CollectionsPverviewWithSpinner = SpinnerHoc(CollectionOverview);
+const ShopCategoryWithSpinner = SpinnerHoc(ShopCategory);
 
 class ShopPage extends Component {
+  state = {
+    isLoading: true,
+  };
+
   unsubscribeFromSnapshot = null;
 
   componentDidMount() {
@@ -21,21 +29,32 @@ class ShopPage extends Component {
     collectionRef.onSnapshot(async (snapshot) => {
       const collectionsMap = convertCollectionSnapshotToMap(snapshot);
       updateCollections(collectionsMap);
+      this.setState({ isLoading: false });
     });
   }
 
   render() {
-    const { match, collection } = this.props;
-    let shopData = <h3 style={{ textAlign: "center" }}>Loading...</h3>;
-
-    if (collection) {
-      shopData = (
-        <div className="shop-page">
-          <Route exact path={`${match.path}`} component={CollectionOverview} />
-          <Route path={`${match.path}/:category`} component={ShopCategory} />
-        </div>
-      );
-    }
+    const { match } = this.props;
+    const { isLoading } = this.state;
+    let shopData = (
+      <div className="shop-page">
+        <Route
+          exact
+          path={`${match.path}`}
+          render={(props) => (
+            <CollectionsPverviewWithSpinner isLoading={isLoading} {...props} />
+          )}
+        />
+        <Route
+          exact
+          path={`${match.path}/:category`}
+          render={(props) => (
+            <ShopCategoryWithSpinner isLoading={isLoading} {...props} />
+          )}
+        />
+      </div>
+    );
+    // }
     return <div className="shop-page">{shopData}</div>;
   }
 }
