@@ -8,9 +8,8 @@ import {
 import CollectionOverview from "./../../components/collections-overview/collections-overview";
 import { Route } from "react-router-dom";
 import ShopCategory from "../shop-category/shop-category";
-import { fetchCollectionsStartAsync } from "../../redux/shop-data/shop.actions";
 import SpinnerHoc from "../../components/spinner-hoc/spinner";
-
+import { fetchCollectionsStart } from "../../redux/shop-data/shop.actions";
 const CollectionsPverviewWithSpinner = SpinnerHoc(CollectionOverview);
 const ShopCategoryWithSpinner = SpinnerHoc(ShopCategory);
 
@@ -18,8 +17,8 @@ class ShopPage extends Component {
   unsubscribeFromSnapshot = null;
 
   componentDidMount() {
-    const { fetchCollectionsStartAsync } = this.props;
-    fetchCollectionsStartAsync();
+    const { fetchCollectionsStart } = this.props;
+    fetchCollectionsStart();
   }
 
   render() {
@@ -57,7 +56,8 @@ const mapStateToProps = createStructuredSelector({
   isCollectionsLoaded: selectIsCollectionsLoaded,
 });
 
-const mapDispatchToPropps = (dispatch) => ({
-  fetchCollectionsStartAsync: () => dispatch(fetchCollectionsStartAsync()),
-});
-export default connect(mapStateToProps, mapDispatchToPropps)(ShopPage);
+const mapDispatchToPprops = dispatch => ({
+  fetchCollectionsStart: () => dispatch(fetchCollectionsStart())
+})
+
+export default connect(mapStateToProps, mapDispatchToPprops)(ShopPage);
