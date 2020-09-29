@@ -56,8 +56,8 @@ const mapStateToProps = createStructuredSelector({
   isCollectionsLoaded: selectIsCollectionsLoaded,
 });
 
-const mapDispatchToPprops = dispatch => ({
-  fetchCollectionsStart: () => dispatch(fetchCollectionsStart())
-})
+const mapDispatchToPprops = (dispatch) => ({
+  fetchCollectionsStart: () => dispatch(fetchCollectionsStart()),
+});
 
 export default connect(mapStateToProps, mapDispatchToPprops)(ShopPage);
