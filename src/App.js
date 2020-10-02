@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./App.css";
+import { GlobalStyle } from "./global.styles";
 import Homepage from "./pages/homepage/Homepage";
 import { Switch, Route, Redirect } from "react-router-dom";
 import ShopPage from "./pages/shop/Shop";
@@ -26,6 +26,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        <GlobalStyle />
         <Header />
         <Switch>
           <Route exact path="/" component={Homepage} />
