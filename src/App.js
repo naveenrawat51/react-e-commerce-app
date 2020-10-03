@@ -8,16 +8,15 @@ import { connect } from "react-redux";
 import { selectCurrentUser } from "./redux/user/user.selectors";
 import { createStructuredSelector } from "reselect";
 import { checkUserSession } from "./redux/user/user.actions";
+import ErrorBoundary from "./components/error-boundary/Error-boundary";
 
-const ShopPageLazyLoad = lazy( () => import('./pages/shop/Shop'));
-const CheckoutPageLazyLoad = lazy( () => import('./pages/checkout/checkout'));
+const ShopPageLazyLoad = lazy(() => import("./pages/shop/Shop"));
+const CheckoutPageLazyLoad = lazy(() => import("./pages/checkout/checkout"));
 class App extends Component {
-
   componentDidMount() {
     const { checkUserSession } = this.props;
     checkUserSession();
   }
-
 
   render() {
     return (
@@ -25,18 +24,20 @@ class App extends Component {
         <GlobalStyle />
         <Header />
         <Switch>
-          <Route exact path="/" component={Homepage} />
-          <Route
-            exact
-            path="/signin"
-            render={() =>
-              this.props.currentUser ? <Redirect to="/" /> : <SignInSignUp />
-            }
-          />
-          <Suspense fallback={<div>Loading....</div>}>
-          <Route path="/shop" component={ShopPageLazyLoad} />
-          <Route exact path="/checkout" component={CheckoutPageLazyLoad} />
-          </Suspense>
+          <ErrorBoundary>
+            <Route exact path="/" component={Homepage} />
+            <Route
+              exact
+              path="/signin"
+              render={() =>
+                this.props.currentUser ? <Redirect to="/" /> : <SignInSignUp />
+              }
+            />
+            <Suspense fallback={<div>Loading....</div>}>
+              <Route path="/shop" component={ShopPageLazyLoad} />
+              <Route exact path="/checkout" component={CheckoutPageLazyLoad} />
+            </Suspense>
+          </ErrorBoundary>
         </Switch>
       </div>
     );
