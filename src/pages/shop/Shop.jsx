@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Profiler } from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import {
@@ -47,7 +47,9 @@ class ShopPage extends Component {
         />
       </div>
     );
-    return <div className="shop-page">{shopData}</div>;
+    return <Profiler id="shopData" onRender={(id, phase, actualDuration) => {
+    //  console.log(id, phase, actualDuration) you can check preformance of your component
+    }}> <div className="shop-page">{shopData}</div> </Profiler>;
   }
 }
 
